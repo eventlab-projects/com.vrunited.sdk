@@ -15,9 +15,6 @@ namespace VRUnited
         public string _address = "";
         public string _displayName = "";
         public Texture2D _thumbnail = null;
-
-        public AssetReference _scene = null;
-
     }
 
 }
