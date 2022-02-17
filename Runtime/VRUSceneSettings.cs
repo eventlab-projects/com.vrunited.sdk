@@ -4,7 +4,7 @@ using System.IO;
 
 using UnityEngine;
 
-namespace QuickVR
+namespace VRUnited
 {
 
     [CreateAssetMenu(fileName = "SceneSettings", menuName = "VRUnited/SceneSettings")]

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace QuickVR
+namespace VRUnited
 {
 
-    public class QuickNetSpawnerPoints : QuickNetSpawner
+    public class QuickNetSpawnerPoints : VRUSpawner
     {
 
         #region PUBLIC ATTRIBUTES
