@@ -1,0 +1,21 @@
+{
+  "name": "com.vrunited.sdk",
+  "version": "1.0.0",
+  "displayName": "VRUnited.SDK",
+  "description": "The VRUnited SDK",
+  "unity": "2019.1",
+  "dependencies": {
+    "com.unity.addressables": "1.18.19"
+  },
+  "keywords": [
+    "vr",
+    "virtual reality",
+    "metaverse"
+  ],
+  "author": {
+    "name": "EventLab",
+    "email": "eventlab.projects@gmail.com",
+    "url": "http://www.event-lab.org/"
+  }
+  
+}
