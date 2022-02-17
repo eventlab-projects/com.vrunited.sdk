@@ -5,7 +5,7 @@ using UnityEngine;
 namespace VRUnited
 {
 
-    public class QuickNetSpawnerPoints : VRUSpawner
+    public class VRUSpawnerPoints : VRUSpawner
     {
 
         #region PUBLIC ATTRIBUTES
