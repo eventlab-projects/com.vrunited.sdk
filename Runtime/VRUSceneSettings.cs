@@ -11,6 +11,7 @@ namespace VRUnited
     [CreateAssetMenu(fileName = "SceneSettings", menuName = "VRUnited/SceneSettings")]
     public class VRUSceneSettings : ScriptableObject
     {
+        public AssetReference _scene = null;
 
         public string _address = "";
         public string _displayName = "";
