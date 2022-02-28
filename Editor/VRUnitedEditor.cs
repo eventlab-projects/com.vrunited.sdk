@@ -8,7 +8,7 @@ using UnityEditor.AddressableAssets.Settings;
 using UnityEngine.AddressableAssets.Initialization;
 using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 
-public class Test : MonoBehaviour
+public static class VRUnitedEditor
 {
 
     #region CONSTANTS
@@ -18,6 +18,8 @@ public class Test : MonoBehaviour
     private const string LABEL_SCENE = "VRUScene";
 
     private const string REMOTE_LOAD_PATH = "{QuickVR.QuickAddressablesManager.URL}";
+
+    private const string GROUP_BUILD_IN_DATA = "Built In Data";
 
     #endregion
 
@@ -41,13 +43,13 @@ public class Test : MonoBehaviour
     #region CREATION AND DESTRUCTION
 
     [MenuItem("VRUnited/InitAddressableSettings")]
-    public static void MyTest()
+    public static void InitAddressableSettings()
     {
         InitProfile();
         InitLabels(new string[] { LABEL_AVATAR, LABEL_SCENE });
-        _settings.BuildRemoteCatalog = true;
-        //_settings.DefaultGroup.GetSchema<BundledAssetGroupSchema>().BuildPath.SetVariableByName(_settings, ;
+        InitGroups();
 
+        _settings.BuildRemoteCatalog = true;
     }
 
     private static void InitProfile()
@@ -70,6 +72,32 @@ public class Test : MonoBehaviour
             if (!definedLabels.Contains(l))
             {
                 _settings.AddLabel(l);
+            }
+        }
+    }
+
+    public static void InitGroups()
+    {
+        foreach (AddressableAssetGroup group in _settings.groups)
+        {
+            InitGroup(group);
+        }
+    }
+
+    public static void InitGroup(string groupName)
+    {
+        InitGroup(_settings.FindGroup(groupName));
+    }
+
+    private static void InitGroup(AddressableAssetGroup group)
+    {
+        if (group)
+        {
+            if (group.name != GROUP_BUILD_IN_DATA)
+            {
+                BundledAssetGroupSchema schema = group.GetSchema<BundledAssetGroupSchema>();
+                schema.BuildPath.SetVariableByName(_settings, "RemoteBuildPath");
+                schema.LoadPath.SetVariableByName(_settings, "RemoteLoadPath");
             }
         }
     }
