@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
-using UnityEngine.AddressableAssets.Initialization;
 using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 
 public static class VRUnitedEditor
@@ -15,7 +14,7 @@ public static class VRUnitedEditor
 
     private const string VRUNITED_PROFILE_NAME = "VRUnited";
     private const string LABEL_AVATAR = "VRUAvatar";
-    private const string LABEL_SCENE = "VRUScene";
+    private const string LABEL_SCENE_SETTINGS = "VRUSceneSettings";
 
     private const string REMOTE_LOAD_PATH = "{QuickVR.QuickAddressablesManager.URL}";
 
@@ -31,6 +30,10 @@ public static class VRUnitedEditor
         {
             if (!m_Settings)
             {
+                if (AddressableAssetSettingsDefaultObject.Settings == null)
+                {
+                    AddressableAssetSettingsDefaultObject.Settings = AddressableAssetSettings.Create(AddressableAssetSettingsDefaultObject.kDefaultConfigFolder, AddressableAssetSettingsDefaultObject.kDefaultConfigAssetName, true, true);
+                }
                 m_Settings = AddressableAssetSettingsDefaultObject.Settings;
             }
             return m_Settings;
@@ -42,14 +45,68 @@ public static class VRUnitedEditor
 
     #region CREATION AND DESTRUCTION
 
-    [MenuItem("VRUnited/InitAddressableSettings")]
+    [MenuItem("VRUnited/Init Addressable Settings")]
     public static void InitAddressableSettings()
     {
         InitProfile();
-        InitLabels(new string[] { LABEL_AVATAR, LABEL_SCENE });
+        InitLabels(new string[] { LABEL_AVATAR, LABEL_SCENE_SETTINGS });
         InitGroups();
 
         _settings.BuildRemoteCatalog = true;
+    }
+
+    [MenuItem("VRUnited/Convert Asset Bundles to Addressables")]
+    public static void ConvertAssetBundlesToAddressables()
+    {
+        var bundleList = AssetDatabase.GetAllAssetBundleNames();
+        if (bundleList.Length > 0)
+        {
+            AssetDatabase.RemoveUnusedAssetBundleNames();
+
+            float fullCount = bundleList.Length;
+            int currCount = 0;
+
+            foreach (var bundle in bundleList)
+            {
+                if (EditorUtility.DisplayCancelableProgressBar("Converting Legacy Asset Bundles", bundle, currCount / fullCount))
+                {
+                    break;
+                }
+
+                currCount++;
+                var group = _settings.CreateGroup(bundle, false, false, false, null);
+                var schema = group.AddSchema<BundledAssetGroupSchema>();
+                schema.BuildPath.SetVariableByName(_settings, AddressableAssetSettings.kLocalBuildPath);
+                schema.LoadPath.SetVariableByName(_settings, AddressableAssetSettings.kLocalLoadPath);
+                schema.BundleMode = BundledAssetGroupSchema.BundlePackingMode.PackTogether;
+                group.AddSchema<ContentUpdateGroupSchema>().StaticContent = true;
+
+                var assetList = AssetDatabase.GetAssetPathsFromAssetBundle(bundle);
+
+                foreach (var asset in assetList)
+                {
+                    var guid = AssetDatabase.AssetPathToGUID(asset);
+                    _settings.CreateOrMoveEntry(guid, group, false, false);
+                    var imp = AssetImporter.GetAtPath(asset);
+                    if (imp != null)
+                    {
+                        imp.SetAssetBundleNameAndVariant(string.Empty, string.Empty);
+                    }
+                }
+            }
+
+            if (fullCount > 0)
+            {
+                _settings.SetDirty(AddressableAssetSettings.ModificationEvent.BatchModification, null, true, true);
+            }
+                
+            EditorUtility.ClearProgressBar();
+            AssetDatabase.RemoveUnusedAssetBundleNames();
+        }
+        else
+        {
+            Debug.Log("No Asset Bundles found!!!");
+        }
     }
 
     private static void InitProfile()
