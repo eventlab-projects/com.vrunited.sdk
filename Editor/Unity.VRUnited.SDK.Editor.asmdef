@@ -1,9 +1,10 @@
 {
-    "name": "NewAssembly",
+    "name": "VRUnited_SDK_Editor",
     "rootNamespace": "",
     "references": [
         "GUID:69448af7b92c7f342b298e06a37122aa",
-        "GUID:9e24947de15b9834991c9d8411ea37cf"
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:cee3fa52839efb34984a7f832b22c095"
     ],
     "includePlatforms": [
         "Editor"

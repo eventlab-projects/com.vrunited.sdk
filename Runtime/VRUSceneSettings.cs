@@ -12,10 +12,9 @@ namespace VRUnited
     public class VRUSceneSettings : ScriptableObject
     {
         public AssetReference _scene = null;
-
-        public string _address = "";
         public string _displayName = "";
         public Texture2D _thumbnail = null;
+
     }
 
 }
