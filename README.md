@@ -4,6 +4,10 @@ The __VRUnited SDK__ is the software library needed to make any Unity project co
 
 # Install
 
+Create a new Unity project or open an existing one and make sure that the _Color Space_ is set to _Linear_. 
+
+![](/Documentation~/img/install/0000.png)
+
 Go to _Window > Package Manager_ and click on the ‘+’ symbol in the top left corner of the new window. Select _Add package from git URL…_
 
 ![](/Documentation~/img/install/00.png)
