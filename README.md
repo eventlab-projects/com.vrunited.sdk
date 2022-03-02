@@ -8,7 +8,7 @@ Create a new Unity project or open an existing one and make sure that the _Color
 
 ![](/Documentation~/img/install/0000.png)
 
-Go to _Window > Package Manager_ and click on the ‘+’ symbol in the top left corner of the new window. Select _Add package from git URL…_
+Now go to _Window > Package Manager_ and click on the ‘+’ symbol in the top left corner of the new window. Select _Add package from git URL…_
 
 ![](/Documentation~/img/install/00.png)
 
