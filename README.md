@@ -1,4 +1,4 @@
-# VRUnited_SDK
+# VRUnited SDK
 
 The __VRUnited SDK__ is the software library needed to make any Unity project compatible with the __VRUnited__ platform. Using this SDK, you will be able to upload and use your own avatars and scenes in __VRUnited__. 
 
