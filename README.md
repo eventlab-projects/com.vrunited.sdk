@@ -11,3 +11,7 @@ Go to _Window > Package Manager_ and click on the ‘+’ symbol in the top left
 A text field will open. Copy and paste the following URL, and then click on _Add_. 
 
 https://github.com/eventlab-projects/VRUnited_SDK.git
+
+The Unity Addressables system is automatically installed as a dependency of the package. 
+
+[Unity Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@1.19/manual/index.html)
