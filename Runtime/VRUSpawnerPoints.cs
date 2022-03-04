@@ -25,7 +25,6 @@ namespace VRUnited
 
             if (isFreeSpot)
             {
-                Debug.Log("freePosition = " + i);
                 //The position is currently free. 
                 Transform t = _spawnPoints[i];
                 position = t.position;
