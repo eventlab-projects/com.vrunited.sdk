@@ -19,3 +19,5 @@ https://github.com/eventlab-projects/VRUnited_SDK.git
 The [Unity Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@1.19/manual/index.html) is automatically installed as a dependency of the package. Once the installation process finishes, go to _VRUnited > Init Addressable Settings_ and the Addressables system will be automatically configured for you. 
 
 ![](/Documentation~/img/install/setup000.png)
+
+Follow the [Wiki](../../wiki) for more in depth information. 
