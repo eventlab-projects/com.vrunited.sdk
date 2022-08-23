@@ -53,6 +53,9 @@ MonoBehaviour:
   - RPC_RequestSynch
   - RPC_SetCell
   - RPC_SetPieceOnCell
+  - RPC_SetTurn
+  - RPC_ForceSync
+  - RPC_RequestSync
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
