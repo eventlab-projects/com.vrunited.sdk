@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Photon.Pun;
-using Photon.Voice.PUN;
-using Photon.Voice.Unity;
 
 namespace VRUnited
 {
@@ -72,8 +70,13 @@ namespace VRUnited
         {
             if (_networkView.IsMine)
             {
-                _networkView.RPC("RPC_ForceSynch", info.Sender, transform.position, transform.rotation);
+                ForceSync(info.Sender);
             }
+        }
+
+        protected virtual void ForceSync(Photon.Realtime.Player sender)
+        {
+            _networkView.RPC("RPC_ForceSynch", sender, transform.position, transform.rotation);
         }
 
         [PunRPC]
