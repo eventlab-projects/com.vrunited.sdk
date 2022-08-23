@@ -47,7 +47,7 @@ namespace VRUnited
 
         #region UPDATE
 
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        public virtual void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
             {
