@@ -49,6 +49,8 @@ MonoBehaviour:
   - RPC_EatMe
   - RPC_RequestTalkToGuest
   - RPC_TalkToGuest
+  - RPC_ForceSynch
+  - RPC_RequestSynch
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
