@@ -28,7 +28,7 @@ namespace VRUnited
 
             if (!_networkView.IsMine)
             {
-                _networkView.RPC("RPC_RequestSynch", RpcTarget.Others);
+                _networkView.RPC("RPC_RequestSync", RpcTarget.Others);
             }
         }
 
@@ -66,7 +66,7 @@ namespace VRUnited
         #region RPCs
 
         [PunRPC]
-        protected virtual void RPC_RequestSynch(PhotonMessageInfo info)
+        protected virtual void RPC_RequestSync(PhotonMessageInfo info)
         {
             if (_networkView.IsMine)
             {
@@ -76,11 +76,11 @@ namespace VRUnited
 
         protected virtual void ForceSync(Photon.Realtime.Player sender)
         {
-            _networkView.RPC("RPC_ForceSynch", sender, transform.position, transform.rotation);
+            _networkView.RPC("RPC_ForceSync", sender, transform.position, transform.rotation);
         }
 
         [PunRPC]
-        protected virtual void RPC_ForceSynch(Vector3 position, Quaternion rotation)
+        protected virtual void RPC_ForceSync(Vector3 position, Quaternion rotation)
         {
             transform.position = position;
             transform.rotation = rotation;
