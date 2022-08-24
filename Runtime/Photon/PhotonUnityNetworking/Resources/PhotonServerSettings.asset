@@ -56,6 +56,7 @@ MonoBehaviour:
   - RPC_SetTurn
   - RPC_ForceSync
   - RPC_RequestSync
+  - RPC_MoveTo
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
