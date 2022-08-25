@@ -21,10 +21,29 @@ namespace VRUnited
 
         #endregion
 
+        #region EVENTS
+
+        public delegate void VRUSpawnerInitializedAction(VRUSpawner spawner);
+        public static event VRUSpawnerInitializedAction OnSpawnerInitialized;
+
+        #endregion
+
+        #region CREATION AND DESTRUCTION
+
+        protected virtual void Awake()
+        {
+            if (OnSpawnerInitialized != null)
+            {
+                OnSpawnerInitialized(this);
+            }
+        }
+
+        #endregion
+
         #region GET AND SET
 
         public abstract bool GetSpotAt(int i, out Vector3 position, out Quaternion rotation);
-        
+
         #endregion
 
         #region DEBUG
