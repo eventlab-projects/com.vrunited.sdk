@@ -50,15 +50,25 @@ namespace VRUnited
             if (stream.IsWriting)
             {
                 // We own this player: send the others our data
-                stream.SendNext(transform.position);
-                stream.SendNext(transform.rotation.eulerAngles.y);
+                SendNetworkData(stream, info);
             }
             else
             {
                 // Network player, receive data
-                transform.position = (Vector3)stream.ReceiveNext();
-                transform.rotation = Quaternion.Euler(0, (float)stream.ReceiveNext(), 0);
+                ReceiveNetworkData(stream, info);
             }
+        }
+
+        protected virtual void SendNetworkData(PhotonStream stream, PhotonMessageInfo info)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation.eulerAngles.y);
+        }
+
+        protected virtual void ReceiveNetworkData(PhotonStream stream, PhotonMessageInfo info)
+        {
+            transform.position = (Vector3)stream.ReceiveNext();
+            transform.rotation = Quaternion.Euler(0, (float)stream.ReceiveNext(), 0);
         }
 
         #endregion
