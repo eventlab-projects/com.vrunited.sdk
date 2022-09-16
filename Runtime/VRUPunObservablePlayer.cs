@@ -23,6 +23,16 @@ namespace VRUnited
             }
         }
 
+        protected override void Start()
+        {
+            base.Start();
+
+            if (OnVRUPlayerEnabled != null)
+            {
+                OnVRUPlayerEnabled(this);
+            }
+        }
+
         public override void OnDisable()
         {
             base.OnDisable();
