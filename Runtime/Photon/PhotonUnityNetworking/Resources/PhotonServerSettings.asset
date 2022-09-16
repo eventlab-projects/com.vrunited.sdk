@@ -59,6 +59,7 @@ MonoBehaviour:
   - RPC_MoveTo
   - RPC_SetPiecePromoted
   - RPC_SetPieceTaken
+  - RPC_SwapBodies
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
