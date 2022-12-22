@@ -27,7 +27,7 @@ namespace VRUnited
 
         #endregion
 
-        #region EXTENSION METHODS
+        #region EXTENSION METHODS COMMON
 
         public static T GetPropertyValue<T>(this ExitGames.Client.Photon.Hashtable properties, string key, T defaultValue = default(T))
         {
@@ -55,6 +55,10 @@ namespace VRUnited
             room.SetCustomProperties(properties);
         }
 
+        #endregion
+
+        #region EXTENSION METHODS ROOM
+
         public static string GetSceneName(this Room room)
         {
             return room.CustomProperties.GetPropertyValue<string>(KEY_ROOM_SCENE_NAME);
@@ -63,58 +67,11 @@ namespace VRUnited
         public static void SetSceneName(this Room room, string sceneName)
         {
             room.SetCustomProperty(KEY_ROOM_SCENE_NAME, sceneName);
-            //ExitGames.Client.Photon.Hashtable roomProperties = room.CustomProperties;
-            //roomProperties[KEY_ROOM_SCENE_NAME] = sceneName;
-            //room.SetCustomProperties(roomProperties);
         }
 
         public static string GetPassword(this Room room)
         {
             return room.CustomProperties.GetPropertyValue<string>(KEY_ROOM_PASSWORD);
-        }
-
-        public static int GetSpotID(this Player player)
-        {
-            return player.CustomProperties.GetPropertyValue<int>(KEY_PLAYER_SPOT_ID, -1);
-        }
-
-        public static void SetSpotID(this Player player, int spotID)
-        {
-            player.SetCustomProperty(KEY_PLAYER_SPOT_ID, spotID);
-            //ExitGames.Client.Photon.Hashtable playerProperties = player.CustomProperties;
-            //playerProperties[KEY_PLAYER_SPOT_ID] = spotID;
-            //player.SetCustomProperties(playerProperties);
-        }
-
-        public static float GetCalibrationHandHeight(this Player player)
-        {
-            return player.CustomProperties.GetPropertyValue<float>(KEY_PLAYER_CALIBRATION_HAND_HEIGHT, 0);
-        }
-
-        public static void SetCalibrationHandHeight(this Player player, float handHeight)
-        {
-            player.SetCustomProperty(KEY_PLAYER_CALIBRATION_HAND_HEIGHT, handHeight);
-            //ExitGames.Client.Photon.Hashtable playerProperties = player.CustomProperties;
-            //playerProperties[KEY_PLAYER_CALIBRATION_HAND_HEIGHT] = handHeight;
-            //player.SetCustomProperties(playerProperties);
-        }
-
-        public static int GetGuestViewID(this Player player)
-        {
-            return player.CustomProperties.GetPropertyValue<int>(KEY_PLAYER_GUEST_VIEW_ID, -1);
-        }
-
-        public static void SetGuestViewID(this Player player, int guestViewID)
-        {
-            player.SetCustomProperty(KEY_PLAYER_GUEST_VIEW_ID, guestViewID);
-            //ExitGames.Client.Photon.Hashtable playerProperties = player.CustomProperties;
-            //playerProperties[KEY_PLAYER_GUEST_VIEW_ID] = guestViewID;
-            //player.SetCustomProperties(playerProperties);
-        }
-
-        public static bool IsGuest(this Player player)
-        {
-            return player.GetGuestViewID() != -1;
         }
 
         public static long GetFreeSpots(this Room room)
@@ -125,9 +82,6 @@ namespace VRUnited
         public static void SetFreeSpots(this Room room, long freeSpots)
         {
             room.SetCustomProperty(KEY_ROOM_FREE_SPOTS, freeSpots);
-            //ExitGames.Client.Photon.Hashtable roomProperties = room.CustomProperties;
-            //roomProperties[KEY_ROOM_FREE_SPOTS] = freeSpots;
-            //room.SetCustomProperties(roomProperties);
         }
 
         public static bool IsFreeSpot(this Room room, int spotID)
@@ -168,6 +122,45 @@ namespace VRUnited
             }
 
             return freeSpotID;
+        }
+
+        #endregion
+
+        #region EXTENSION METHODS PLAYER
+
+        public static int GetSpotID(this Player player)
+        {
+            return player.CustomProperties.GetPropertyValue<int>(KEY_PLAYER_SPOT_ID, -1);
+        }
+
+        public static void SetSpotID(this Player player, int spotID)
+        {
+            player.SetCustomProperty(KEY_PLAYER_SPOT_ID, spotID);
+        }
+
+        public static float GetCalibrationHandHeight(this Player player)
+        {
+            return player.CustomProperties.GetPropertyValue<float>(KEY_PLAYER_CALIBRATION_HAND_HEIGHT, 0);
+        }
+
+        public static void SetCalibrationHandHeight(this Player player, float handHeight)
+        {
+            player.SetCustomProperty(KEY_PLAYER_CALIBRATION_HAND_HEIGHT, handHeight);
+        }
+
+        public static int GetGuestViewID(this Player player)
+        {
+            return player.CustomProperties.GetPropertyValue<int>(KEY_PLAYER_GUEST_VIEW_ID, -1);
+        }
+
+        public static void SetGuestViewID(this Player player, int guestViewID)
+        {
+            player.SetCustomProperty(KEY_PLAYER_GUEST_VIEW_ID, guestViewID);
+        }
+
+        public static bool IsGuest(this Player player)
+        {
+            return player.GetGuestViewID() != -1;
         }
 
         #endregion

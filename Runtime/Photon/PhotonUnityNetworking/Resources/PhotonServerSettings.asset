@@ -61,6 +61,11 @@ MonoBehaviour:
   - RPC_SetPieceTaken
   - RPC_SwapBodies
   - RPC_StartConcert
+  - RPC_SetSlide
+  - RPC_RecordSession
+  - RPC_RecordSessionStart
+  - RPC_RecordSessionStop
+  - RPC_RequestRecordSessionStart
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
