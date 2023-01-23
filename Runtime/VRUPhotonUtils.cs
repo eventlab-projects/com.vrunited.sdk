@@ -19,6 +19,7 @@ namespace VRUnited
         public const string KEY_ROOM_PASSWORD = "pass";
         public const string KEY_ROOM_SCENE_NAME = "SN";
         public const string KEY_ROOM_FREE_SPOTS = "FS";
+        public const string KEY_ROOM_SESSION_PATH = "SP";
 
         //Keys for Player's Custom Properties
         public const string KEY_PLAYER_GUEST_VIEW_ID = "GVID"; //If I am a Guest, this property identifies the PhotonView component of the Guest
@@ -58,6 +59,11 @@ namespace VRUnited
         #endregion
 
         #region EXTENSION METHODS ROOM
+
+        public static bool HasProperty(this Room room, string key)
+        {
+            return room.CustomProperties.ContainsKey(key);
+        }
 
         public static string GetSceneName(this Room room)
         {
@@ -124,9 +130,24 @@ namespace VRUnited
             return freeSpotID;
         }
 
+        public static string GetRecordedSessionPath(this Room room)
+        {
+            return room.CustomProperties.GetPropertyValue<string>(KEY_ROOM_SESSION_PATH);
+        }
+
+        public static void SetRecordedSessionPath(this Room room, string sessionPath)
+        {
+            room.SetCustomProperty(KEY_ROOM_SESSION_PATH, sessionPath);
+        }
+
         #endregion
 
         #region EXTENSION METHODS PLAYER
+
+        public static bool HasProperty(this Player player, string key)
+        {
+            return player.CustomProperties.ContainsKey(key);
+        }
 
         public static int GetSpotID(this Player player)
         {
